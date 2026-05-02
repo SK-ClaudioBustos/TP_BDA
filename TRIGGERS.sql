@@ -1,0 +1,1 @@
+-- Archivo en donde se declaran los triggers que vamos a usar

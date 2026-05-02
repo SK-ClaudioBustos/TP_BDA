@@ -1,0 +1,1 @@
+-- Archivo en donde se declaran las funciones que vamos a usar
