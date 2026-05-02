@@ -6,13 +6,13 @@ CREATE TYPE nivel_riesgo_enum AS ENUM ('BAJO', 'MEDIO', 'ALTO');
 
 CREATE TABLE Gravedad (
     id       SERIAL        PRIMARY KEY,
-    duracion INT           NOT NULL,   -- duración SLA en minutos/horas
+    duracion INT           NOT NULL,   -- tiempo de espera máximo del SLA en minutos
     nivel    nivel_gravedad_enum NOT NULL
 );
 
 CREATE TABLE Estado_Incidente (
     id          SERIAL       PRIMARY KEY,
-    descripcion estado_incidente_enum NOT NULL
+    descripcion tipo_incidente_enum NOT NULL
     -- Valores representativos: 'Pendiente', 'En proceso', 'Resuelto', 'Escalado'
 );
 
@@ -50,7 +50,6 @@ CREATE TABLE Recursos (
     coordenada_y              REAL              NOT NULL,
     cantidad_incidentes_resueltos INT           NOT NULL DEFAULT 0,
     cantidad_incidentes       INT               NOT NULL DEFAULT 0,
-    resultado_desempenio      REAL,             -- calculado / derivado
     id_zona                   INT               NOT NULL,
 
     CONSTRAINT fk_recurso_zona
