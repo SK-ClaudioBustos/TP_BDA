@@ -1,10 +1,8 @@
-CREATE TYPE nivel_gravedad_enum AS ENUM ('BAJA', 'MEDIA', 'ALTA', 'CRITICA');
-CREATE TYPE tipo_incidente_enum AS ENUM ('ACCIDENTE', 'FALLO', 'INTRUSION', 'OTRO');
-CREATE TYPE tipo_recurso_enum AS ENUM ('AMBULANCIA', 'BOMBEROS', 'POLICÍA', 'OTRO');
-CREATE TYPE estado_asignacion_enum AS ENUM ('PENDIENTE', 'EN_PROCESO', 'RESUELTA', 'ESCALADA');
-CREATE TYPE nivel_riesgo_enum AS ENUM ('BAJO', 'MEDIO', 'ALTO', 'CRITICO');
-
-create domain nivel_gravedad as text check(value in (('BAJA', 'MEDIA', 'ALTA') ))
+CREATE TYPE nivel_gravedad_enum AS ENUM ('1', '2', '3', '4', '5');
+CREATE TYPE tipo_incidente_enum AS ENUM ('ACCIDENTE DE TRÁNSITO', 'INCENDIO', 'EMERGENCIA MÉDICA', 'DELITO');
+CREATE TYPE tipo_recurso_enum AS ENUM ('AMBULANCIA', 'BOMBERO', 'PATRULLERO');
+CREATE TYPE estado_asignacion_enum AS ENUM ('PENDIENTE', 'EN_PROCESO', 'RESUELTO', 'ESCALADO');
+CREATE TYPE nivel_riesgo_enum AS ENUM ('BAJO', 'MEDIO', 'ALTO');
 
 CREATE TABLE Gravedad (
     id       SERIAL        PRIMARY KEY,
@@ -14,8 +12,8 @@ CREATE TABLE Gravedad (
 
 CREATE TABLE Estado_Incidente (
     id          SERIAL       PRIMARY KEY,
-    descripcion VARCHAR(100) NOT NULL
-    -- Valores representativos: 'Pendiente', 'En proceso', 'Resuelta', 'Escalada'
+    descripcion estado_incidente_enum NOT NULL
+    -- Valores representativos: 'Pendiente', 'En proceso', 'Resuelto', 'Escalado'
 );
 
 CREATE TABLE Penalizaciones (
