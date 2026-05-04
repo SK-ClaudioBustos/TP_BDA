@@ -77,7 +77,7 @@ CREATE TABLE Incidentes (
     tipo         tipo_incidente_enum NOT NULL,
     coordenadas_x REAL              NOT NULL,
     coordenadas_y REAL              NOT NULL,
-    id_sensor    INT,
+    id_sensor    INT                NOT NULL,
     id_zona      INT                NOT NULL,
 
     CONSTRAINT fk_incidente_sensor
