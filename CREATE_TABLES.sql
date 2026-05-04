@@ -4,7 +4,7 @@ CREATE TYPE tipo_recurso_enum AS ENUM ('AMBULANCIA', 'BOMBERO', 'PATRULLERO');
 CREATE TYPE estado_asignacion_enum AS ENUM ('PENDIENTE', 'EN_PROCESO', 'RESUELTO', 'ESCALADO');
 CREATE TYPE nivel_riesgo_enum AS ENUM ('BAJO', 'MEDIO', 'ALTO');
 
-CREATE TABLE Gravedad (
+CREATE TABLE Gravedades (
     id       SERIAL        PRIMARY KEY,
     duracion INT           NOT NULL,   -- tiempo de espera máximo del SLA en minutos
     nivel    nivel_gravedad_enum NOT NULL
@@ -71,7 +71,7 @@ CREATE TABLE Recursos_Estado_Recurso (
         FOREIGN KEY (id_estado_recurso) REFERENCES Estado_Recurso(id)
 );
 
-CREATE TABLE Incidente (
+CREATE TABLE Incidentes (
     id           SERIAL             PRIMARY KEY,
     fecha        DATE               NOT NULL,
     tipo         tipo_incidente_enum NOT NULL,
