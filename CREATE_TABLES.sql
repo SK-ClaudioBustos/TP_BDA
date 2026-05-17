@@ -12,7 +12,8 @@ CREATE TABLE Zonas (
 );
 
 CREATE TABLE Auditoria_Zonas (
-    id_zona      INT            PRIMARY KEY,
+	id			SERIAL 			PRIMARY KEY,
+    id_zona      INT            NOT NULL,
     nivel_riesgo nivel_riesgo_enum NOT NULL,
     id_usuario  INT             NOT NULL,
     fecha_hora  TIMESTAMP       NOT NULL,
@@ -34,7 +35,8 @@ CREATE TABLE Sensores (
 );
 
 CREATE TABLE Auditoria_Sensores (
-    id_sensor          INT  PRIMARY KEY,
+	id			SERIAL		PRIMARY KEY,
+    id_sensor          INT  NOT NULL,
     coordenada_x REAL   NOT NULL,
     coordenada_y REAL   NOT NULL,
     id_zona     INT     NOT NULL,
@@ -59,7 +61,8 @@ CREATE TABLE Recursos (
 );
 
 CREATE TABLE Auditoria_Recursos (
-    id                        SERIAL            PRIMARY KEY,
+	id						SERIAL		PRIMARY KEY,
+    id_recurso             	INT            NOT NULL,
     tipo                      tipo_recurso_enum NOT NULL,
     cantidad_incidentes_resueltos       INT           NOT NULL DEFAULT 0,
     cantidad_incidentes _asignados      INT               NOT NULL DEFAULT 0,
@@ -109,13 +112,13 @@ CREATE TABLE Recursos-Estado_Recurso (
         FOREIGN KEY (id_estado_recurso) REFERENCES Estado_Recurso(id)
 );
 
-CREATE TABLE Incidente (
+CREATE TABLE Incidentes (
     id           SERIAL             PRIMARY KEY,
     fecha_hora        TIMESTAMP               NOT NULL,
     tipo         tipo_incidente_enum NOT NULL,
     coordenadas_x REAL              NOT NULL,
     coordenadas_y REAL              NOT NULL,
-    id_sensor    INT,
+    id_sensor    INT                NOT NULL,
     id_zona      INT                NOT NULL,
 
     CONSTRAINT fk_incidente_sensor
@@ -164,7 +167,6 @@ CREATE TABLE Asignaciones (
 
     CONSTRAINT pk_asignacion
         PRIMARY KEY (id_recurso, id_incidente),
-
     CONSTRAINT fk_asig_recurso
         FOREIGN KEY (id_recurso)      REFERENCES Recursos(id),
     CONSTRAINT fk_asig_incidente
